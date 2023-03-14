@@ -21,3 +21,14 @@ hexo-theme-ayer ](https://github.com/shen-yu/hexo-theme-ayer)
      dir:  themes/ayer-next/source/images/cover # 背景图片存放目录，注意填写·当前项目相对路径·
      logo: false # /images/ayer.svg # 如果不要直接设置成false
    ```
+4. 支持SmoothScroll.js，并且可以自定义配置
+   ```yaml
+   # SmoothScroll 是否启用以及配置
+   # 详细配置参考 https://github.com/gblazex/smoothscroll-for-websites/wiki
+   smoothscroll:
+     enable: true
+     config:
+       animationTime: 400
+       stepSize: 100
+       touchpadSupport: false
+   ```

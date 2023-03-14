@@ -36,6 +36,15 @@ brand:
 # 页面顶部进度条
 progressBar: true
 
+# SmoothScroll 是否启用以及配置
+# 详细配置参考 https://github.com/gblazex/smoothscroll-for-websites/wiki
+smoothscroll:
+  enable: true
+  config:
+    animationTime: 400
+    stepSize: 100
+    touchpadSupport: false
+
 # 告示板模块
 broadcast:
   enable: true # true开启，false关闭

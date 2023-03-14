@@ -44,7 +44,11 @@
         href="https://fastly.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
       />
       <script src="https://fastly.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
-
+      <% if (theme.smoothscroll.enable){ %>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.8/SmoothScroll.min.js"></script>
+        <script> SmoothScroll(JSON.parse('<%- object_tools("stringify", theme.smoothscroll.config) %>')); </script>
+      <% } %> 
+      
       <!-- mermaid -->
       <% if (theme.mermaid.enable) { %>
       <script src="<%= theme.mermaid.cdn %>"></script>
