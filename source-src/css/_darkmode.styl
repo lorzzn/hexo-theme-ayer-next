@@ -1,12 +1,18 @@
 darkmode()
-	background: rgba(0,0,0,.6)
+	background: #2a2a2e
 	*
-		color: #f2f2f2
+		color: #f8f8f8
+		border-color: #555 !important
+	h1, a
+		color: darken(#fff,5%) !important
 	.article-entry code
-		background: darken(#ddd,10%) !important
+		background-color: rgba(0,0,0,0) !important
 		color: #c7254e !important
+		border-width: 1px !important
+		border-style: solid !important
 	.article-header .article-title,.share-outer i,.category-list .category-list-item i,.category-list a:hover .category-list-item,.article-date, .article-category .article-category-link, .archive-year-wrap .archive-year, .archive-article-date,a.toc-link,.tag-list > .tag-list-item:before,.article-tag-list:before
-		color: darken(#fff,10%) !important
+		color: darken(#fff,5%) !important
+		border-left-color: darken(#fff,50%) !important
 	.share-icons a i,.float_btns i,#reward .reward-p,#reward .reward-p i,.local-search-input
 		color: darken(#999,20%) !important
 	.is-position-fixed
@@ -17,13 +23,13 @@ darkmode()
 		background: darken(#fff,10%) !important
 		color: #555 !important
 	#vcomments-box #vcomments
-		background-color rgba(255,255,255,.1) !important
+		background-color rgba(0, 0, 0, 0) !important
 		*
-			color #f1f1f1 !important
+			color darken(#fff,5%) !important
 	.v .vbtn
 		background-color: transparent !important
 	.v .vlist .vcard .vhead .vsys
-		border: 1px solid #f1f1f1 !important
+		border: 1px solid darken(#fff,5%) !important
 		background-color: transparent !important
 	input::-webkit-input-placeholder
 		color: #ccc;

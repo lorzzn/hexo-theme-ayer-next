@@ -3,8 +3,9 @@
 <div id="vcomments-box">
   <div id="vcomments"></div>
 </div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script src="https://fastly.jsdelivr.net/npm/leancloud-storage@3/dist/av-min.js"></script>
+<script src="https://fastly.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js"></script>
+<script src="/js/jquery-3.6.0.min.js"></script>
 <script>
   new Valine({
     el: "#vcomments",
@@ -13,6 +14,8 @@
     path: window.location.pathname,
     avatar: "<%- theme.valine.avatar %>",
     placeholder: "<%- theme.valine.placeholder %>",
+    serverURLs: "<%- theme.valine.serverURLs %>",
+    enableQQ: "<%- theme.valine.enableQQ %>",
     recordIP: true,
   });
   const infoEle = document.querySelector("#vcomments .info");
@@ -21,18 +24,12 @@
       item.parentNode.removeChild(item);
     });
   }
+  $("#vcomments").bind("DOMNodeInserted", (e)=>{
+    let o = $(e.target).children("img[class='vimg']");
+    o.attr("src")?o.attr("src", o.attr("src").replace("gravatar.loli.net", "sdn.geekzu.org")):{};    
+  })
 </script>
 <style>
-  #vcomments-box {
-    padding: 5px 30px;
-  }
-
-  @media screen and (max-width: 800px) {
-    #vcomments-box {
-      padding: 5px 0px;
-    }
-  }
-
   #vcomments-box #vcomments {
     background-color: #fff;
   }
@@ -43,6 +40,22 @@
 
   .v .vlist .vcard {
     padding-left: 10px;
+  }
+
+  .vheader .vinput {
+    border-bottom-style: solid!important;
+  }
+
+  .vinput:focus {
+    border-bottom-color: #ccc!important;
+  }
+
+  .vinput {
+    color: #403e3e!important;
+  }
+
+  #vcomments p, #vcomments input {
+    color: #403e3e;
   }
 </style>
 <% } %>

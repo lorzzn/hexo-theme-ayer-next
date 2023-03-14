@@ -5,7 +5,7 @@ import { terser } from "rollup-plugin-terser";
 export default {
   input: "source-src/main.js",
   output: {
-    dir: "source/dist",
+    dir: "source/rollup",
     format: "iife",
     assetFileNames: "[name][extname]",
   },

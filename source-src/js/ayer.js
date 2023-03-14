@@ -25,6 +25,7 @@
   });
 
   $(document).on("mouseup", (e) => {
+    if (e.target.className == "ri-search-line" || e.target.title == "搜索" ) return;
     const _con = $(".local-search");
     if (!_con.is(e.target) && _con.has(e.target).length === 0) {
       $searchWrap.removeClass("on");
@@ -102,20 +103,29 @@
 
     // Show and hide the scroll to top link based on scroll position
     scrollElem.hide();
-    $(".content").on("scroll", () => {
-      const scrollTop = $(".content").scrollTop();
+    const scrollElemControll = e => {
+      const scrollTop = $(e).scrollTop();
       if (scrollTop > upperLimit) {
-        $(scrollElem).stop().fadeTo(200, 0.6); // fade back in
+        scrollElem.css("display", "block"); // fade back in
+        scrollElem.stop().fadeTo(150, 0.6); // fade back in
       } else {
-        $(scrollElem).stop().fadeTo(200, 0); // fade out
+        scrollElem.stop().fadeTo(150, 0); // fade out
+        scrollElem.css("display", "none"); // fade out
       }
+    }
+    
+    // listeners
+    const $content = $(".content");
+    $content.on("scroll", e => {
+      scrollElemControll(e.target);
     });
 
     // Scroll to top animation on click
-    $(scrollElem).on("click", () => {
-      $(".content").animate({ scrollTop: 0 }, scrollSpeed);
+    scrollElem.on("click", () => {
+      $content.animate({ scrollTop: 0 }, scrollSpeed);
       return false;
     });
+
   })();
 
   // Caption
@@ -152,70 +162,39 @@
   });
 
   // DarkMode
-  if (sessionStorage.getItem("darkmode") == 1) {
-    $("body").addClass("darkmode");
-    $("#todark i").removeClass("ri-moon-line").addClass("ri-sun-line");
-  } else {
-    $("body").removeClass("darkmode");
-    $("#todark i").removeClass("ri-sun-line").addClass("ri-moon-line");
-  }
-  $("#todark").on("click", () => {
-    if (sessionStorage.getItem("darkmode") == 1) {
-      $("body").removeClass("darkmode");
-      $("#todark i").removeClass("ri-sun-line").addClass("ri-moon-line");
-      sessionStorage.removeItem("darkmode");
-    } else {
+  function setdarkmode(mode) {
+    if (mode) {
       $("body").addClass("darkmode");
       $("#todark i").removeClass("ri-moon-line").addClass("ri-sun-line");
-      sessionStorage.setItem("darkmode", 1);
+    } else {
+      $("body").removeClass("darkmode");
+      $("#todark i").removeClass("ri-sun-line").addClass("ri-moon-line");
+    }
+  }
+  if (localStorage.getItem("darkmode") == 1) {
+    setdarkmode(1);
+  } else {
+    setdarkmode(0);
+  }
+  $("#todark").on("click", () => {
+    if (localStorage.getItem("darkmode") == 1) {
+      setdarkmode(0);
+      localStorage.removeItem("darkmode");
+    } else {
+      setdarkmode(1);
+      localStorage.setItem("darkmode", 1);
     }
   });
 
-  // ShowThemeInConsole
-  const ayerInfo = "主题不错？⭐star 支持一下 ->";
-  const ayerURL = "https://github.com/Shen-Yu/hexo-theme-ayer";
-  const ayerNameStr =
-    "\n\n     _ __   _______ _____    \n    / \\ \\ \\ / / ____|  _  \\  \n   / _ \\ \\ V /|  _| | |_) |  \n  / ___ \\ | | | |___|  _ <   \n /_/   \\_\\ _| |_____|_| \\__\\ \n";
-  const ayerInfoStyle =
-    "background-color: #49b1f5; color: #fff; padding: 8px; font-size: 14px;";
-  const ayerURLStyle =
-    "background-color: #ffbca2; padding: 8px; font-size: 14px;";
-  const ayerNameStyle = "background-color: #eaf8ff;";
+  // 修改封面背景
+  $("#changebg").on("click", () => {
+    let src = $(".bg-img").attr("src");
+    let data = $(".bg-img").attr("data").split(",");
+    let pos = data.findIndex(i => i == src);
+    src = data[pos + 1] ? data[pos + 1] : data[0];
+    localStorage.setItem("bg_img_src", src);
+    $(".bg-img").attr("src", src);
+    Pace.restart();
+  })
 
-  console.log(
-    "%c%s%c%s%c%s",
-    ayerInfoStyle,
-    ayerInfo,
-    ayerURLStyle,
-    ayerURL,
-    ayerNameStyle,
-    ayerNameStr
-  );
 })(jQuery);
-
-// Tracking
-!(function (p) {
-  "use strict";
-  !(function (t) {
-    var s = window,
-      e = document,
-      i = p,
-      c = "".concat(
-        "https:" === e.location.protocol ? "https://" : "http://",
-        "sdk.51.la/js-sdk-pro.min.js"
-      ),
-      n = e.createElement("script"),
-      r = e.getElementsByTagName("script")[0];
-    (n.type = "text/javascript"),
-      n.setAttribute("charset", "UTF-8"),
-      (n.async = !0),
-      (n.src = c),
-      (n.id = "LA_COLLECT"),
-      (i.d = n);
-    var o = function () {
-      s.LA.ids.push(i);
-    };
-    s.LA ? s.LA.ids && o() : ((s.LA = p), (s.LA.ids = []), o()),
-      r.parentNode.insertBefore(n, r);
-  })();
-})({ id: "JGjrOr2rebvP6q2a", ck: "JGjrOr2rebvP6q2a" });

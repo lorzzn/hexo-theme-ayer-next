@@ -1,23 +1,26 @@
 <% if (theme.cover.enable) { %>
+<section class="cover-top"></section>
 <section class="cover">
     <% if (theme.github.enable && theme.github.url){ %>
       <%# "GitHub Ribbons" %>
       <a class="forkMe" href="<%=theme.github.url%>"
-        target="_blank"><img width="149" height="149" src="<%- url_for('images/forkme.png') %>"
+        target="_blank"><img src="<%- web_src('images/forkme.png') %>"
           class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
     <% } %>
   <div class="cover-frame">
     <div class="bg-box">
-      <img src="<%- theme.cover.path %>" alt="image frame" />
+      <img 
+        class="bg-img" 
+        data="<%- list_files(theme.cover.dir, '/images/cover/') %>" 
+        alt="image frame" 
+        onerror="resetBgImgSrc()"
+      />
     </div>
-    <div class="cover-inner text-center text-white">
+    <div class="cover-inner text-center text-white backdrop-filter-blur-iii"
+    >
       <h1><a href="<%- url_for() %>"><%= config.title %></a></h1>
       <div id="subtitle-box">
-        <% if (theme.subtitle.enable) { %>
         <span id="subtitle"></span>
-        <% }else{ %>
-          <span id="subtitle"><%= theme.subtitle.text %></span>
-        <% } %>
       </div>
       <div>
         <% if (theme.cover.logo) { %>
@@ -34,10 +37,23 @@
     <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
   </div>
 </section>
+<% } else if (theme.brand.enable) { %>
+<section class="brand">
+  <div class="brand-frame">
+    <div class="brand-inner">
+      <h1><a href="<%- url_for() %>"><%= config.title %></a></h1>
+      <div id="subtitle-box">
+        <span id="subtitle"></span>
+      </div>
+    </div>
+  </div>
+</section>
 <% } %>
 
+<%- web_src('/js/jquery-3.6.0.min.js', 'js') %>
+
 <% if (theme.subtitle.enable){ %>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+<script src="https://fastly.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
 <% } %>
 
 <!-- Subtitle -->
@@ -45,15 +61,53 @@
   <script>
     try {
       var typed = new Typed("#subtitle", {
-        strings: ['<%= theme.subtitle.text %>', '<%= theme.subtitle.text2 %>', '<%= theme.subtitle.text3 %>'],
-        startDelay: <%= theme.subtitle.startDelay %>,
-        typeSpeed: <%= theme.subtitle.typeSpeed %>,
-        loop: <%= theme.subtitle.loop %>,
-        backSpeed: <%= theme.subtitle.backSpeed %>,
-        showCursor: <%= theme.subtitle.showCursor %>
+        strings: '<%= theme.subtitle.sentences %>'.split('|'),
+        startDelay: Number('<%= theme.subtitle.startDelay %>'),
+        typeSpeed: Number('<%= theme.subtitle.typeSpeed %>'),
+        loop: Boolean('<%= theme.subtitle.loop %>'),
+        backSpeed: Number('<%= theme.subtitle.backSpeed %>'),
+        showCursor: Boolean('<%= theme.subtitle.showCursor %>')
       });
     } catch (err) {
       console.log(err)
     }
   </script>
-  <% } %>
+<% } else { %>
+  <script>
+    $("#subtitle").append("<%= theme.subtitle.sentences %>".split('|').shift())
+  </script>
+<% } %>
+
+<script>
+  // 背景
+  function resetBgImgSrc() {
+    localStorage.removeItem("bg_img_src");
+    loadBgImgSrc();
+  }
+  function loadBgImgSrc() {
+    let src = localStorage.getItem("bg_img_src");
+    if( src ) $(".bg-img").attr("src", src);
+    else $(".bg-img").attr("src", $(".bg-img").attr("data").split(',')[0]);
+  }
+  (function () { loadBgImgSrc(); })();
+</script>
+
+<script>
+  // 背景自适应缩放
+  (function () {
+    // Cover size
+    const $content = $(".content");
+    const dynamicCover = e => {
+      let scr = $content.scrollTop();
+      let inh = window.innerHeight;
+      $(".cover, .cover-frame, .bg-img").css("height", inh - scr + "px");
+      // cover-top 用于补偿页面高度
+      $(".cover-top").css("height", Math.min(scr, inh) + "px");
+    }
+
+    // listeners
+    $content.on("scroll", dynamicCover);
+    $(window).on("resize", dynamicCover);
+
+  })();
+</script>

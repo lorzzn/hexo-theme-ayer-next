@@ -31,20 +31,19 @@
       <title><% if (title){ %><%= title %> | <% } %> <%= config.title %></title>
       <% if (theme.favicon){ %>
       <link rel="shortcut icon" href="<%- theme.favicon %>" />
-      <% } %> <%- css('dist/main') %>
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
-      />
-      <%- css('css/custom') %> <% if (theme.progressBar){ %>
-      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+      <% } %> 
+      <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/remixicon@2.1.0/fonts/remixicon.min.css" />
+      <%- web_src('rollup/main', 'css') %>
+      <%- web_src('css/custom', 'css') %>
+      <% if (theme.progressBar){ %>
+      <script src="https://fastly.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
       <% } %> <%- partial('google-analytics') %> <%- partial('baidu-analytics')
       %>
       <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+        href="https://fastly.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
       />
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+      <script src="https://fastly.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
 
       <!-- mermaid -->
       <% if (theme.mermaid.enable) { %>

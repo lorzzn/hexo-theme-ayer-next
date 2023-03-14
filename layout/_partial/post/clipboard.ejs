@@ -1,4 +1,4 @@
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script src="https://fastly.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script>
   function wait(callback, seconds) {
     var timelag = null;
@@ -6,6 +6,7 @@
   }
   !function (e, t, a) {
     var initCopyCode = function(){
+      $("figure").wrap('<div class="code-wrap"></div>');
       var copyHtml = '';
       copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
       copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';

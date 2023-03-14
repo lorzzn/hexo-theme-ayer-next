@@ -23,14 +23,16 @@
   position absolute
   top 50%
   left 50%
+  width 100%
   transform translate(-50%, -100%)
+  background-color rgba(0, 0, 0, 0.1)
   h1
-    font-family: Titillium Web,PingFang SC,Hiragino Sans GB,"Microsoft JhengHei","Microsoft YaHei",Helvetica Neue,Helvetica,Arial,sans-serif
+    font-family: font-family-base
     font-size 7rem
     margin 0
     opacity .95
   #subtitle-box
-    font-family: Titillium Web,PingFang SC,Hiragino Sans GB,"Microsoft JhengHei","Microsoft YaHei",Helvetica Neue,Helvetica,Arial,sans-serif
+    font-family: font-family-base
     font-size 3rem
     margin .5rem 0 1.5rem
   a, &
@@ -54,6 +56,19 @@
     animation down 1s linear infinite
     &:hover
       color sea
+
+.brand-frame
+  position relative
+  min-width 100%
+  .brand-inner
+    text-align center
+    h1
+      font-family: font-family-base
+    #subtitle-box
+      font-size: 20px
+    a, &
+      color body-color
+      text-decoration none
 
 .float_btns
   position sticky

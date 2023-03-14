@@ -18,14 +18,14 @@
   }
 }
 
-.totop,.todark
+.totop,.todark,.changebg
   position relative
   display block
   overflow hidden
   cursor pointer
-  rounded-circle(3.2rem)
+  rounded-circle(4rem)
   background-color darken(froth-light,2%)
-  line-height 3rem
+  line-height 4rem
   opacity .6
   transition(opacity 1s ease)
   &:hover
@@ -36,3 +36,6 @@
   &:hover > i {
     animation rocket .3s ease-in-out
   }
+
+.changebg
+  margin-top: .8rem
