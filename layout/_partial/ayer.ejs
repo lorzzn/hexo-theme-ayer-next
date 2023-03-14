@@ -1,5 +1,4 @@
 <% if (theme.cover.enable) { %>
-<section class="cover-top"></section>
 <section class="cover">
     <% if (theme.github.enable && theme.github.url){ %>
       <%# "GitHub Ribbons" %>
@@ -101,13 +100,16 @@
       let scr = $content.scrollTop();
       let inh = window.innerHeight;
       $(".cover, .cover-frame, .bg-img").css("height", inh - scr + "px");
-      // cover-top 用于补偿页面高度
-      $(".cover-top").css("height", Math.min(scr, inh) + "px");
+      // margin-top 用于补偿页面高度
+      $(".cover").css("margin-top", Math.min(scr, inh) + "px");
     }
 
     // listeners
-    $content.on("scroll", dynamicCover);
-    $(window).on("resize", dynamicCover);
+    window.onload = () => {
+      dynamicCover();
+      $content.on("scroll", dynamicCover);
+      $(window).on("resize", dynamicCover);
+    }
 
   })();
 </script>

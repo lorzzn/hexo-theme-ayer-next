@@ -13,6 +13,9 @@
     overflow-x hidden
     overflow-y scroll
     max-height 70vh 
+    scrollbar-width thin
+    padding-right 20px
+    pointer-events auto
     
   >.toc-list::-webkit-scrollbar
     width 4px
@@ -55,8 +58,9 @@ a.toc-link
   position fixed !important
   top 0
   right 0
-  background-color #fff
+  background-color transparent
   z-index 996
+  pointer-events none
 
 // Left line before pseudo element.
 .toc-link::before

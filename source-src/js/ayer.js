@@ -120,11 +120,24 @@
       scrollElemControll(e.target);
     });
 
-    // Scroll to top animation on click
-    scrollElem.on("click", () => {
-      $content.animate({ scrollTop: 0 }, scrollSpeed);
-      return false;
-    });
+    // 监听滚动是否结束
+    let t1 = 0, t2 = 0, timer = null; 
+    $content.on("scroll", function(){
+      // 监听滚动
+      clearTimeout(timer)
+      timer = setTimeout(isScrollEnd, 300)
+      t1 =  $content.scrollTop()
+    })
+    function isScrollEnd() {
+      t2 = $content.scrollTop();
+      if(t2 == t1){
+        clearTimeout(timer)
+        // 滚动结束后重新添加监听
+        scrollElem.unbind("click").one("click", () => {
+          $content.animate({ scrollTop: 0 }, scrollSpeed);
+        });
+      }
+    }
 
   })();
 
