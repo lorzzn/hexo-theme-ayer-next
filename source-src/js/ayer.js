@@ -120,7 +120,7 @@
       scrollElemControll(e.target);
     });
 
-    // 监听滚动是否结束
+    // 返回顶部按钮
     let t1 = 0, t2 = 0, timer = null; 
     $content.on("scroll", function(){
       // 监听滚动

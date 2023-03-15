@@ -11,13 +11,13 @@
       <img 
         class="bg-img" 
         data="<%- list_files(theme.cover.dir, '/images/cover/') %>" 
-        alt="image frame" 
+        alt="" 
         onerror="resetBgImgSrc()"
       />
     </div>
     <div class="cover-inner text-center text-white backdrop-filter-blur-iii"
     >
-      <h1><a href="<%- url_for() %>"><%= config.title %></a></h1>
+      <h1><%= config.title %></h1>
       <div id="subtitle-box">
         <span id="subtitle"></span>
       </div>
@@ -48,8 +48,6 @@
   </div>
 </section>
 <% } %>
-
-<%- web_src('/js/jquery-3.6.0.min.js', 'js') %>
 
 <% if (theme.subtitle.enable){ %>
 <script src="https://fastly.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
@@ -88,28 +86,30 @@
     if( src ) $(".bg-img").attr("src", src);
     else $(".bg-img").attr("src", $(".bg-img").attr("data").split(',')[0]);
   }
-  (function () { loadBgImgSrc(); })();
+  loadBgImgSrc();
 </script>
 
 <script>
-  // 背景自适应缩放
-  (function () {
-    // Cover size
-    const $content = $(".content");
-    const dynamicCover = e => {
-      let scr = $content.scrollTop();
-      let inh = window.innerHeight;
-      $(".cover, .cover-frame, .bg-img").css("height", inh - scr + "px");
-      // margin-top 用于补偿页面高度
-      $(".cover").css("margin-top", Math.min(scr, inh) + "px");
-    }
-
-    // listeners
-    window.onload = () => {
-      dynamicCover();
-      $content.on("scroll", dynamicCover);
-      $(window).on("resize", dynamicCover);
-    }
-
-  })();
+  // 标题图片缩放
+  const $content = $(".content");
+  const $cover = $(".cover");
+  const $coverInner = $(".cover-inner")
+  $cover.on("click", () => {
+    $cover.addClass("cover__fullscreen");
+    $coverInner.fadeOut(100);
+    $content.one("scroll", () => {
+      $cover.removeClass("cover__fullscreen");
+      $coverInner.fadeIn(100);
+    })
+  })
 </script>
+
+<style>
+  .cover__fullscreen {
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    margin-left: 0;
+    pointer-events: none;
+  }
+</style>

@@ -9,35 +9,33 @@
 .cover-frame
   position relative
   min-width 100%
-  height 100vh
+  height 100%
   .bg-box
     width 100%
     height 100%
     &>img
       display block
-      width 100vw
-      height 100vh
+      width 100%
+      height 100%
       object-fit cover
       object-position center center
 .cover-inner
   position absolute
-  top 50%
-  left 50%
+  top 0
+  left 0
   width 100%
-  transform translate(-50%, -100%)
+  height 100%
   background-color rgba(0, 0, 0, 0.1)
+  cursor default
+  color #fff
   h1
     font-family: font-family-base
-    font-size 7rem
-    margin 0
+    font-size 5rem
+    margin-bottom 0
     opacity .95
   #subtitle-box
     font-family: font-family-base
-    font-size 3rem
-    margin .5rem 0 1.5rem
-  a, &
-    color white
-    text-decoration none
+    font-size 2.5rem
   video, img
     position relative
   .cover-logo
@@ -45,6 +43,7 @@
 
 
 .cover-learn-more
+  display none
   position absolute
   z-index 1
   bottom 10px
@@ -99,8 +98,6 @@
 // Media Query
 @media (max-width: 768px)
   .cover-inner
-    transform translate(-50%, -70%);
-    width 100%
     h1
       font-size 4.5rem
     #subtitle-box
