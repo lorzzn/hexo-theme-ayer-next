@@ -33,6 +33,13 @@ cover:
 brand:
   enable: true
 
+# 网站资源配置， web_src config
+web_src: 
+  cdn: 
+    enable: false # 是否启用cdn
+    protocol: https # cdn网站协议类型
+    url: cdn.jsdelivr.net/gh/user/user.github.io # cdn地址
+
 # 页面顶部进度条
 progressBar: true
 

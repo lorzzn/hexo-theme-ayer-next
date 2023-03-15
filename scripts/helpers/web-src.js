@@ -1,4 +1,5 @@
 const fs = require("fs");
+const URL = require("url");
 
 // 自定义helper函数
 hexo.extend.helper.register('web_src', 
@@ -9,10 +10,20 @@ hexo.extend.helper.register('web_src',
  * @returns 
  */
 function(path, type) {
-    let url = 1 // this.config.iscn 
-                ? this.config.url + "/" + path 
-                : "https://gcore.jsdelivr.net/gh/ppengryuu/ppengryuu.github.io/" + path;
-    if ( fs.existsSync("devmode") ) { url = "http://localhost:4000/" + path };
+    let protocol, host, port;
+    // 是否使用cdn
+    if (this.theme.web_src.cdn.enable) {
+        protocol = this.theme.web_src.cdn.protocol;
+        host = this.theme.web_src.cdn.url;
+    }
+    // 判断是否为本地服务器模式
+    if (this.config.local_server.enable) {
+        protocol = this.config.server.protocol;
+        host = this.config.server.ip;
+        port = this.config.server.port;
+    }
+    if (!path.startsWith('/')) path = '/' + path;
+    let url = URL.format({ protocol: protocol, hostname: host, port: port, pathname: path }) 
     switch (type) {
         case "js":
             url = url.endsWith(".js")?url:url+".js";
