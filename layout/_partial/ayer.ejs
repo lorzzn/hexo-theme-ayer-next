@@ -1,5 +1,5 @@
 <% if (theme.cover.enable) { %>
-<section class="cover">
+<section class="cover tran_all_500_eio">
     <% if (theme.github.enable && theme.github.url){ %>
       <%# "GitHub Ribbons" %>
       <a class="forkMe" href="<%=theme.github.url%>"
@@ -15,20 +15,22 @@
         onerror="resetBgImgSrc()"
       />
     </div>
-    <div class="cover-inner text-center text-white backdrop-filter-blur-iii"
+    <div class="cover-inner text-center text-white tran_all_200_eio"
     >
-      <h1><%= config.title %></h1>
-      <div id="subtitle-box">
-        <span id="subtitle"></span>
-      </div>
-      <div>
-        <% if (theme.cover.logo) { %>
-        <img
-          src="<%- theme.cover.logo %>"
-          class="cover-logo"
-          alt="<%= config.title %>"
-        />
-        <% } %>
+      <div class="cover-inner-box">
+        <h1><%= config.title %></h1>
+        <div id="subtitle-box">
+          <span id="subtitle"></span>
+        </div>
+        <div>
+          <% if (theme.cover.logo) { %>
+          <img
+            src="<%- theme.cover.logo %>"
+            class="cover-logo"
+            alt="<%= config.title %>"
+          />
+          <% } %>
+        </div>
       </div>
     </div>
   </div>
@@ -82,7 +84,7 @@
     loadBgImgSrc();
   }
   function loadBgImgSrc() {
-    let src = localStorage.getItem("bg_img_src");
+    var src = localStorage.getItem("bg_img_src");
     if( src ) $(".bg-img").attr("src", src);
     else $(".bg-img").attr("src", $(".bg-img").attr("data").split(',')[0]);
   }
@@ -90,16 +92,16 @@
 </script>
 
 <script>
-  // 标题图片缩放
-  const $content = $(".content");
-  const $cover = $(".cover");
-  const $coverInner = $(".cover-inner")
+  // 标题背景图片缩放
+  var $content = $(window), 
+      $cover = $(".cover"), 
+      $coverInner = $(".cover-inner");
   $cover.on("click", () => {
     $cover.addClass("cover__fullscreen");
-    $coverInner.fadeOut(100);
+    $coverInner.fadeOut(200);
     $content.one("scroll", () => {
       $cover.removeClass("cover__fullscreen");
-      $coverInner.fadeIn(100);
+      $coverInner.fadeIn(200);
     })
   })
 </script>
@@ -107,7 +109,7 @@
 <style>
   .cover__fullscreen {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     margin-top: 0;
     margin-left: 0;
     pointer-events: none;

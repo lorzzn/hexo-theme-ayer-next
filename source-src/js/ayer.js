@@ -2,11 +2,13 @@
   // Search
   let $searchWrap = $(".search-form-wrap"),
     isSearchAnim = false,
-    searchAnimDuration = 200;
+    searchAnimDuration = 200, 
+    $content = $(window);
+  
+  const innerWidth = () =>  window.innerWidth;
 
-  const startSearchAnim = () => {
-    isSearchAnim = true;
-  };
+  // 搜索框
+  const startSearchAnim = () => isSearchAnim = true;
 
   const stopSearchAnim = (callback) => {
     setTimeout(function () {
@@ -24,7 +26,7 @@
     });
   });
 
-  $(document).on("mouseup", (e) => {
+  $(document).on("touchstart mousedown", (e) => {
     if (e.target.className == "ri-search-line" || e.target.title == "搜索" ) return;
     const _con = $(".local-search");
     if (!_con.is(e.target) && _con.has(e.target).length === 0) {
@@ -99,7 +101,7 @@
     const scrollElem = $("#totop");
 
     // Scroll to top speed
-    const scrollSpeed = 1000;
+    const scrollSpeed = 800;
 
     // Show and hide the scroll to top link based on scroll position
     scrollElem.hide();
@@ -115,7 +117,6 @@
     }
     
     // listeners
-    const $content = $(".content");
     $content.on("scroll", e => {
       scrollElemControll(e.target);
     });
@@ -134,7 +135,7 @@
         clearTimeout(timer)
         // 滚动结束后重新添加监听
         scrollElem.unbind("click").one("click", () => {
-          $content.animate({ scrollTop: 0 }, scrollSpeed);
+          $("html, body").animate({ scrollTop: 0 }, scrollSpeed);
         });
       }
     }
@@ -154,14 +155,17 @@
       });
   });
 
-  // Mobile Nav
-  const $content = $(".content"),
-    $sidebar = $(".sidebar");
-
+  // Mobile Nav 导航栏
+  const $sidebar = $(".sidebar");
   $(".navbar-toggle").on("click", () => {
-    $(".content,.sidebar").addClass("anim");
-    $content.toggleClass("on");
     $sidebar.toggleClass("on");
+    $(".content").toggleClass("on");
+  });
+  $(".content").on("touchstart mousedown", () => {
+    if (innerWidth() <= 768) {
+      $sidebar.addClass("on");
+      $(".content").addClass("on");
+    }
   });
 
   // Reward

@@ -10,7 +10,7 @@
   box-sizing border-box
 
 html, body
-  height: 100%
+  word-break: break-word
 
 html
   font-size font-size-browser
@@ -20,6 +20,7 @@ html
   -webkit-tap-highlight-color transparent
 
 body
+  height: 100%
   position relative
   background-color body-background
   font-family font-family-base
@@ -53,6 +54,7 @@ button
   outline: 0
   cursor pointer
   
+@import "_common"
 @import "_extend"
 @import "_partial/layout"
 @import "_partial/lists"
@@ -74,7 +76,6 @@ button
 @import "_partial/share"
 @import "_partial/friends"
 @import "_partial/ads"
-@import "_partial/bfblur"
 
 if sidebar
   @import "_partial/sidebar"

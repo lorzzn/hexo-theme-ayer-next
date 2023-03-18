@@ -33,6 +33,10 @@
       <link rel="shortcut icon" href="<%- theme.favicon %>" />
       <% } %> 
       <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/remixicon@2.1.0/fonts/remixicon.min.css" />
+      <link
+        rel="stylesheet"
+        href="https://fastly.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
       <%- web_src('rollup/main', 'css') %>
       <%- web_src('css/custom', 'css') %>
       <%- web_src('/js/jquery-3.6.0.min.js', 'js') %> 
@@ -40,13 +44,9 @@
       <script src="https://fastly.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
       <% } %> <%- partial('google-analytics') %> <%- partial('baidu-analytics')
       %>
-      <link
-        rel="stylesheet"
-        href="https://fastly.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
-      />
       <script src="https://fastly.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
       <% if (theme.smoothscroll.enable){ %>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.8/SmoothScroll.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"></script>
         <script> SmoothScroll(JSON.parse('<%- object_tools("stringify", theme.smoothscroll.config) %>')); </script>
       <% } %> 
       
