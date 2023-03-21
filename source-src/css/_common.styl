@@ -1,23 +1,36 @@
 
 // backdrop
 // i(1), ii(2), iii(3), iv(4), v(5), vi(6), vii(7), viii(8), ix(9), x(10), xi(11), xii(12)
-.backdrop-filter-blur-x 
-    -webkit-backdrop-filter: blur(10px);
-    -moz-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-
 .backdrop-filter-blur-iii 
-    -webkit-backdrop-filter: blur(3px);
-    -moz-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  -moz-backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+
+.backdrop-filter-blur-x 
+  backdrop-filter: blur(10px);
+  -moz-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
 // transition
-.tran_all_500_eio 
+.tran_all_200_eio, .tran_all_300_eio, .tran_all_500_eio 
   transition-property all
-  transition-duration .5s
+  -moz-transition-property all
+  -webkit-transition-property all
   transition-timing-function ease-in-out
+  -moz-transition-timing-function ease-in-out
+  -webkit-transition-timing-function ease-in-out
 
 .tran_all_200_eio 
-  transition-property all
   transition-duration .2s
-  transition-timing-function ease-in-out
+  -moz-transition-duration .2s
+  -moz-transition-duration .2s
+
+.tran_all_300_eio 
+  transition-duration .3s
+  -moz-transition-duration .3s
+  -moz-transition-duration .3s
+
+.tran_all_500_eio 
+  transition-duration .5s
+  -moz-transition-duration .5s
+  -moz-transition-duration .5s

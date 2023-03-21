@@ -2,6 +2,12 @@
 
 <body>
   <div id="app">
+    <% if (theme.github.enable && theme.github.url){ %>
+      <%# "GitHub Ribbons" %>
+      <a class="forkMe" href="<%=theme.github.url%>"
+        target="_blank"><img src="<%- web_src('images/forkme.png') %>"
+          class="attachment-full size-full tran_all_300_eio" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <% } %>
     <% if (theme.click_effect===2){ %>
       <canvas class="fireworks"></canvas>
       <style>

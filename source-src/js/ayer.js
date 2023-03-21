@@ -203,7 +203,7 @@
     }
   });
 
-  // 修改封面背景
+  // 修改标题背景
   $("#changebg").on("click", () => {
     let src = $(".bg-img").attr("src");
     let data = $(".bg-img").attr("data").split(",");

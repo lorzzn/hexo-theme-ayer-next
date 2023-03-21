@@ -4,6 +4,15 @@
   width 100%
   position relative
 
+.forkMe
+  position fixed
+  z-index 999
+  top 0
+  right 0
+  img
+    width: 145px
+    height: 145px
+
 .cover
   position relative
   overflow hidden
@@ -11,16 +20,6 @@
   height 30vh
   margin-top 80px
   text-align center
-  .forkMe
-    position absolute
-    z-index 999
-    top 0
-    right 0
-    img
-      width: 145px
-      height: 145px
-      transition: 0.3s
-      -webkit-transition: 0.3s
 
 .content, .sidebar
   &.anim
@@ -95,11 +94,11 @@
       transform: none
 
 @media (max-width: 768px)
+  .forkMe
+    img
+      width: 120px
+      height: 120px
   .cover 
-    .forkMe
-      img
-        width: 120px
-        height: 120px
     &.on
       margin-left -1px !important
   .navbar-toggle
