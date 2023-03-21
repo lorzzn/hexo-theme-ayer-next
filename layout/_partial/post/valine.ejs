@@ -13,6 +13,7 @@
     app_key: "<%- theme.leancloud.app_key %>",
     path: window.location.pathname,
     avatar: "<%- theme.valine.avatar %>",
+    avatar_cdn: "<%- theme.valine.avatar_cdn %>",
     placeholder: "<%- theme.valine.placeholder %>",
     serverURLs: "<%- theme.valine.serverURLs %>",
     enableQQ: "<%- theme.valine.enableQQ %>",
@@ -24,10 +25,6 @@
       item.parentNode.removeChild(item);
     });
   }
-  $("#vcomments").bind("DOMNodeInserted", (e)=>{
-    let o = $(e.target).children("img[class='vimg']");
-    o.attr("src")?o.attr("src", o.attr("src").replace("gravatar.loli.net", "sdn.geekzu.org")):{};    
-  })
 </script>
 <style>
   #vcomments-box #vcomments {
