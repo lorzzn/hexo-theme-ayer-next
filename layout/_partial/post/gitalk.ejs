@@ -20,3 +20,25 @@
   gitalk.render('gitalk-container')
 </script>
 <% } %>
+
+<style>
+  #gitalk-container * {
+    background-color: rgba(0,0,0,0);
+  }
+
+  #gitalk-container .gt-container .gt-btn-login, #gitalk-container .gt-container .gt-btn-public {
+    background-color: #6190e8!important;
+  }
+
+  #gitalk-container .gt-container .gt-comment-content:hover {
+    box-shadow: none;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.05);
+  }
+
+  #gitalk-container .gt-popup {
+    border-radius: 5px;
+    background-color: #fff!important;
+  }
+
+</style>
