@@ -27,7 +27,7 @@ logo: /images/avatar.png
 # enable-是否启用封面；dir-背景图片存放目录；logo-封面logo
 cover:
   enable: true
-  dir:  themes/ayer_/source/images/cover # 背景图片存放目录，注意填写·当前博客项目相对路径·
+  dir:  themes/ayer-next/source/images/cover # 背景图片存放目录，注意填写·当前博客项目相对路径·
   logo: false # /images/ayer.svg # 如果不要直接设置成false
 
 brand:
@@ -46,7 +46,7 @@ progressBar: true
 # SmoothScroll 是否启用以及配置
 # 详细配置参考 https://github.com/gblazex/smoothscroll-for-websites/wiki
 smoothscroll:
-  enable: true
+  enable: false
   config:
     animationTime: 400
     stepSize: 100
@@ -198,7 +198,7 @@ gongan:
 friends_link:
   博客主题: #网站名称
     #网站地址
-    url: https://github.com/ppengryuu/hexo-theme-ayer
+    url: https://github.com/ppengryuu/hexo-theme-ayer-next
     #网站图片(可忽略不写)
     img: /images/friends/ayer.png
   GitHub:
@@ -226,6 +226,7 @@ leancloud:
 valine:
   enable: true # 是否启用
   avatar: robohash # 头像样式(https://valine.js.org/avatar.html)
+  avatar_cdn: "https://sdn.geekzu.org/avatar/"
   placeholder: 昵称输入QQ号可自动填充头像、昵称和邮箱 # placeholder
   serverURLs: 
   enableQQ: true
@@ -238,6 +239,7 @@ gitalk:
   repo:  # Repository name
   owner:  # GitHub ID
   admin:  # GitHub ID
+  proxy:  # GitHub Token 代理 参考(https://prohibitorum.top/7cc2c97a15b4.html)
 
 # 3、Twikoo(https://github.com/imaegoo/twikoo)
 twikoo:
