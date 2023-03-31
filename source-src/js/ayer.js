@@ -188,11 +188,6 @@
       $("#todark i").removeClass("ri-sun-line").addClass("ri-moon-line");
     }
   }
-  if (localStorage.getItem("darkmode") == 1) {
-    setdarkmode(1);
-  } else {
-    setdarkmode(0);
-  }
   $("#todark").on("click", () => {
     if (localStorage.getItem("darkmode") == 1) {
       setdarkmode(0);
