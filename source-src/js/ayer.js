@@ -201,7 +201,7 @@
   // 修改标题背景
   $("#changebg").on("click", () => {
     let src = $(".bg-img").attr("src");
-    let data = $(".bg-img").attr("data").split(",");
+    let data = $(".bg-img").data("sources").split(",");
     let pos = data.findIndex(i => i == src);
     src = data[pos + 1] ? data[pos + 1] : data[0];
     localStorage.setItem("bg_img_src", src);

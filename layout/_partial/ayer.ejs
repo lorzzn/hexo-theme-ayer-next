@@ -4,7 +4,7 @@
     <div class="bg-box">
       <img 
         class="bg-img" 
-        data="<%- list_files(theme.cover.dir, '/images/cover/') %>" 
+        data-sources="<%- list_files(theme.cover.dir, '/images/cover/') %>" 
         alt="" 
         onerror="resetBgImgSrc()"
       />
@@ -80,22 +80,41 @@
   function loadBgImgSrc() {
     var src = localStorage.getItem("bg_img_src");
     if( src ) $(".bg-img").attr("src", src);
-    else $(".bg-img").attr("src", $(".bg-img").attr("data").split(',')[0]);
+    else $(".bg-img").attr("src", $(".bg-img").data("sources").split(',')[0]);
   }
   loadBgImgSrc();
 </script>
 
 <script>
+  let scrollEvents = "DOMMouseScroll mousewheel wheel touchmove"
+  scrollEvents = scrollEvents.trim().split(' ');
+  let fPreventDefault = function(e) {
+    e.cancelable && e.preventDefault && e.preventDefault();
+  };
+  let allowScroll = function(allow) {
+    if ( allow == 0 ) {
+      scrollEvents.forEach(function(evn) {
+        document.addEventListener(evn, fPreventDefault, { passive: false })
+      });
+    } else if ( allow == 1 ) {
+      scrollEvents.forEach(function(evn) {
+        document.removeEventListener(evn, fPreventDefault, { passive: false })
+      });
+    } 
+  }
+
   // 标题背景图片缩放
-  var $content = $(window), 
+  let $content = $(window), 
       $cover = $(".cover"), 
       $coverInner = $(".cover-inner");
   $cover.on("click", () => {
     $cover.addClass("cover__fullscreen");
     $coverInner.fadeOut(200);
     $content.one("scroll", () => {
+      allowScroll(0)
       $cover.removeClass("cover__fullscreen");
       $coverInner.fadeIn(200);
+      setTimeout(() => allowScroll(1), 500);
     })
   })
 </script>
